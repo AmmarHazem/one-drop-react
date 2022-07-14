@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./assets/styles/main.scss";
+import "./assets/styles/main.less";
+import Home from "./routes/Home";
+import HomeTab from "./components/HomeTab";
+import MyOrdersTab from "./components/MyOrdersTab";
+import TargetTab from "./components/TargetTab";
+import MyAccountTab from "./components/MyAccountTab";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route index element={<HomeTab />} />
+          <Route path="my-orders" element={<MyOrdersTab />} />
+          <Route path="target" element={<TargetTab />} />
+          <Route path="my-account" element={<MyAccountTab />} />
+          <Route
+            path="*"
+            element={
+              <main>
+                <h2>Route not found</h2>
+              </main>
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
