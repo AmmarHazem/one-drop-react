@@ -1,6 +1,8 @@
 @import "./variables.scss";
 
 .home-tab {
+  overflow: auto;
+
   .home-tab-header {
     height: 2rem;
     display: flex;

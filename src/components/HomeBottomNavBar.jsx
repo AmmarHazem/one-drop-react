@@ -23,7 +23,7 @@ const HomeBottomNavBar = () => {
         icon={<LineChartOutlined />}
       />
       <HomeBottomNavBarButton
-        to="/my-account"
+        to="/signup-send-email-verification"
         name="My Account"
         icon={<UserOutlined />}
       />

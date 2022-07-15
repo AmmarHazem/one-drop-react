@@ -1,5 +1,5 @@
 import { Row, Col } from "antd";
-import WashTypeCard from "./WashTypeCard";
+import HomeTabWashTypeCard from "./HomeTabWashTypeCard";
 
 const HomeTabNewWashSection = ({ washTypes }) => {
   return (
@@ -12,7 +12,7 @@ const HomeTabNewWashSection = ({ washTypes }) => {
           <div className="wash-types">
             {washTypes.map((item) => {
               return (
-                <WashTypeCard
+                <HomeTabWashTypeCard
                   key={item._id}
                   name={item.name}
                   description={item.description}

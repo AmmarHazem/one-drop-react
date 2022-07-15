@@ -1,6 +1,6 @@
 import React from "react";
 
-const WashTypeCard = ({ name, description, image }) => {
+const HomeTabWashTypeCard = ({ name, description, image }) => {
   return (
     <div className="wash-type-card">
       <div className="image">
@@ -12,4 +12,4 @@ const WashTypeCard = ({ name, description, image }) => {
   );
 };
 
-export default WashTypeCard;
+export default HomeTabWashTypeCard;

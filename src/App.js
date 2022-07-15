@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./assets/styles/main.scss";
-import "./assets/styles/main.less";
 import Home from "./routes/Home";
 import HomeTab from "./components/HomeTab";
 import MyOrdersTab from "./components/MyOrdersTab";
 import TargetTab from "./components/TargetTab";
 import MyAccountTab from "./components/MyAccountTab";
+import SignUpSendEmailVerification from "./routes/SignUpSendEmailVerification";
+import "./assets/styles/main.scss";
 
 function App() {
   return (
@@ -25,6 +25,10 @@ function App() {
             }
           />
         </Route>
+        <Route
+          path="/signup-send-email-verification"
+          element={<SignUpSendEmailVerification />}
+        />
       </Routes>
     </BrowserRouter>
   );

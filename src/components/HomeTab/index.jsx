@@ -11,7 +11,11 @@ const HomeTab = () => {
 
   let content;
   if (loadingWashTypes) {
-    content = <Loading size={60} />;
+    content = (
+      <div className="d-flex justify-content-center align-item-center">
+        <Loading size={60} />
+      </div>
+    );
   } else if (!washTypes) {
     content = <h3>Something went wrong</h3>;
   } else if (washTypes.length === 0) {
