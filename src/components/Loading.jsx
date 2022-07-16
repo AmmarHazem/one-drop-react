@@ -1,18 +1,21 @@
 import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
-const Loading = ({ size = 30 }) => {
+const Loading = ({ size = 30, children }) => {
   return (
     <Spin
+      className="loading-spin"
       indicator={
-        <LoadingOutlined
+        <Loading3QuartersOutlined
           style={{
             fontSize: size,
           }}
           spin
         />
       }
-    />
+    >
+      {children}
+    </Spin>
   );
 };
 

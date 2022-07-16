@@ -5,7 +5,8 @@ import MyOrdersTab from "./components/MyOrdersTab";
 import TargetTab from "./components/TargetTab";
 import MyAccountTab from "./components/MyAccountTab";
 import SignUpSendEmailVerification from "./routes/SignUpSendEmailVerification";
-import "./assets/styles/main.scss";
+import OTPVerification from "./routes/OTPVerification";
+import SignUpForm from "./routes/SignUpForm";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           path="/signup-send-email-verification"
           element={<SignUpSendEmailVerification />}
         />
+        <Route path="/otp-verfication" element={<OTPVerification />} />
+        <Route path="/sign-up" element={<SignUpForm />} />
       </Routes>
     </BrowserRouter>
   );

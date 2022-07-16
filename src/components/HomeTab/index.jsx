@@ -1,4 +1,3 @@
-import "../../assets/styles/home_tab.scss";
 import HomeTabHeader from "./HomeTabHeader";
 import HomeTabMainTopCard from "./HomeTabMainTopCard";
 import HomeTabNewWashSection from "./HomeTabNewWashSection";

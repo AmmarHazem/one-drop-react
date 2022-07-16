@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+.signup-send-email-verification {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .title {
+      font-weight: bold;
+    }
+
+    .ant-btn {
+      border: none;
+      background-color: $primary-color;
+      width: 100%;
+      max-width: 30rem;
+    }
+  }
+}

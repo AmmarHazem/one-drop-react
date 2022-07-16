@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import "../assets/styles/home.scss";
 import HomeButtomNavBar from "../components/HomeBottomNavBar";
 
 const Home = () => {

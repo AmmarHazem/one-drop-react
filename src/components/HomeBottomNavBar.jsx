@@ -6,7 +6,6 @@ import {
   LineChartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import "../assets/styles/home_bottom_nav_bar.scss";
 
 const HomeBottomNavBar = () => {
   return (

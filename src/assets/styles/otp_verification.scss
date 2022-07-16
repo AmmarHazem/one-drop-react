@@ -1,0 +1,28 @@
+@import "./variables.scss";
+
+.otp-verification {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .title {
+      font-weight: bold;
+    }
+
+    .ant-btn {
+      border: none;
+      box-shadow: none;
+      width: 100%;
+      max-width: 30rem;
+
+      &:disabled {
+        background-color: transparent;
+      }
+    }
+
+    .otp-input {
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+}

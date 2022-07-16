@@ -1,0 +1,74 @@
+@import "./variables.scss";
+@import "./home.scss";
+@import "./home_bottom_nav_bar.scss";
+@import "./home_tab.scss";
+@import "./signup_send_email_verification.scss";
+@import "./otp_verification.scss";
+@import "./sign_up_form.scss";
+
+body {
+  margin: 0;
+  font-family: "Almarai", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.ant-btn {
+  color: white;
+  font-weight: bold;
+  border-radius: 7px;
+  height: 2.5rem;
+
+  &:focus,
+  &:hover {
+    color: white;
+  }
+
+  &:disabled {
+    background-color: rgba($primary-color, 0.5);
+    color: white;
+  }
+}
+
+.ant-btn-text {
+  &:disabled {
+    span {
+      color: #ccc;
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+}
+
+.back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    color: black;
+  }
+}
+
+.ant-input,
+.ant-select-selector {
+  border-radius: 7px !important;
+}
+
+.loading-spin {
+  color: $primary-color;
+}
+
+.ant-btn-primary {
+  background-color: $secondary-color;
+  border-color: $secondary-color;
+}

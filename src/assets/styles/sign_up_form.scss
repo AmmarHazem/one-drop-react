@@ -1,0 +1,17 @@
+@import "./variables.scss";
+
+.sign-up-form {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .title {
+    font-weight: bold;
+  }
+
+  .ant-btn-primary {
+    background-color: $primary-color;
+    border: none;
+    width: 100%;
+    max-width: 30rem;
+  }
+}

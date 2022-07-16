@@ -8,7 +8,7 @@ const useWashTypes = () => {
   useEffect(() => {
     const getWashTypes = async () => {
       try {
-        const res = await axios.get("/api/v1/wash-types");
+        const res = await axios.get("/wash-types");
         setWashTypes(res.data.washTypes);
       } catch (e) {
         console.log("--- get wash-types error");

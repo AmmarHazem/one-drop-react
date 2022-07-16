@@ -6,10 +6,11 @@ const BackButton = () => {
   const navigate = useNavigate();
   return (
     <Button
+      className="back-btn"
       onClick={() => {
         navigate(-1);
       }}
-      type="primary"
+      type="text"
     >
       <ArrowRightOutlined />
     </Button>
