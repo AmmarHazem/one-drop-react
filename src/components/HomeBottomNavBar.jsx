@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   HomeOutlined,
   UnorderedListOutlined,
@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 
 const HomeBottomNavBar = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <nav className="home-bottom-nav-bar">
       <HomeBottomNavBarButton to="/" name="Home" icon={<HomeOutlined />} />
@@ -22,7 +23,7 @@ const HomeBottomNavBar = () => {
         icon={<LineChartOutlined />}
       />
       <HomeBottomNavBarButton
-        to="/signup-send-email-verification"
+        to={user?.id ? "/my-account" : "/signup-send-email-verification"}
         name="My Account"
         icon={<UserOutlined />}
       />

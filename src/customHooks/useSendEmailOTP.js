@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 import axios from "../axios";
 
-const useSendEmailOTP = ({ email }) => {
+const useSendEmailOTP = () => {
   const [loading, setLoading] = useState(false);
 
-  const sendEmailOTP = useCallback(async () => {
+  const sendEmailOTP = useCallback(async ({ email }) => {
     setLoading(true);
     try {
       const res = await axios.post("/auth/send-email-otp", { email });
@@ -16,7 +16,7 @@ const useSendEmailOTP = ({ email }) => {
     } finally {
       setLoading(false);
     }
-  }, [email]);
+  }, []);
 
   return [loading, sendEmailOTP];
 };

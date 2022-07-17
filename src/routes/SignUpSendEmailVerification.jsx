@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { Input, Button, Form, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import useSendEmailOTP from "../customHooks/useSendEmailOTP";
 
 const SignUpSendEmailVerification = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [loading, sendEmailOTP] = useSendEmailOTP({ email });
+  const [loading, sendEmailOTP] = useSendEmailOTP();
+
+  // console.log({ location });
 
   const onFormSubmitSuccess = async (value) => {
-    // console.log("--- values", value);
-    const res = await sendEmailOTP();
+    const res = await sendEmailOTP({ email });
     if (res?.user) {
-      navigate("/otp-verfication", { state: res.user });
+      navigate("/otp-verfication", {
+        state: { user: res.user, next: location.state?.next },
+      });
     } else {
       message.error("Something went wrong");
     }
@@ -46,14 +50,16 @@ const SignUpSendEmailVerification = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Item>
-          <Button
-            loading={loading}
-            disabled={!email}
-            htmlType="submit"
-            className="mt-5"
-          >
-            Continue
-          </Button>
+          <div className="d-flex justify-content-center">
+            <Button
+              loading={loading}
+              disabled={!email}
+              htmlType="submit"
+              className="mt-5"
+            >
+              Continue
+            </Button>
+          </div>
         </Form>
       </main>
     </div>

@@ -6,7 +6,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 const HomeTabMonthlyPackagesButton = () => {
   return (
     <section className="monthly-packages-btn">
-      <Row>
+      <Row className="justify-content-center">
         <Col
           xs={{ span: 24 }}
           md={{ span: 12 }}

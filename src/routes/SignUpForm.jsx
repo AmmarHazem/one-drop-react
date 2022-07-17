@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Form, Input, Select, Button, message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import BackButton from "../components/BackButton";
 import useCities from "../customHooks/useCities";
 import Loading from "../components/Loading";
 import useSubmitSignupForm from "../customHooks/useSubmitSignupForm";
+import { setUserAction } from "../redux/authReducer";
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const user = location.state;
+  const { user, next } = location.state;
   const [loadingFormSubmit, submitForm] = useSubmitSignupForm();
   const [loading, cities] = useCities();
   const [enableContinueButton, setEnableContinueButton] = useState(false);
@@ -27,6 +30,21 @@ const SignUpForm = () => {
     }
   };
 
+  const handleSignupSuccess = useCallback(
+    (res) => {
+      dispatch(setUserAction(res?.user));
+      message.success("You signed up successfully");
+      let nextPath;
+      if (next?.pathname) {
+        nextPath = next?.pathname;
+      } else {
+        nextPath = "/";
+      }
+      navigate(nextPath, { replace: true });
+    },
+    [navigate, dispatch, next]
+  );
+
   const onSubmitForm = async (values) => {
     const city = cities.find((item) => item._id === values.city);
     const res = await submitForm({
@@ -36,8 +54,7 @@ const SignUpForm = () => {
       city,
     });
     if (res?.user?.didRegister) {
-      message.success("You signed up successfully");
-      navigate("/", { replace: true });
+      handleSignupSuccess(res);
     } else {
       message.error("Something went wrong");
     }

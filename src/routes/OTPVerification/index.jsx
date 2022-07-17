@@ -1,17 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Input, message } from "antd";
+import { useDispatch } from "react-redux";
 import BackButton from "../../components/BackButton";
 import ResendOTPButton from "./ResendOTPButton";
 import useOTPSignin from "../../customHooks/useOTPSignin";
 import Loading from "../../components/Loading";
+import { setUserAction } from "../../redux/authReducer";
 
 const OTPVerification = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const user = location.state;
+  const { user, next } = location.state;
   const [otp, setOTP] = useState("");
   const [loading, otpSignin] = useOTPSignin({ otp, email: user.email });
+
+  const handleLoginSuccess = useCallback(
+    (res) => {
+      dispatch(setUserAction(res.user));
+      let nextPath;
+      if (next?.pathname) {
+        debugger;
+        nextPath = next?.pathname;
+      } else {
+        debugger;
+        nextPath = "/";
+      }
+      navigate(nextPath, { replace: true });
+    },
+    [dispatch, navigate, next]
+  );
 
   useEffect(() => {
     if (otp.length !== 4) return;
@@ -20,13 +39,13 @@ const OTPVerification = () => {
       if (!res?.user?.id) {
         message.error("Invalid or expired OTP code");
       } else if (res.user.didRegister) {
-        navigate("/", { replace: true });
+        handleLoginSuccess(res);
       } else {
-        navigate("/sign-up", { replace: true, state: user });
+        navigate("/sign-up", { replace: true, state: { user, next } });
       }
     };
     submitOTP();
-  }, [otp, otpSignin, navigate, user]);
+  }, [otp, otpSignin, navigate, user, dispatch, handleLoginSuccess, next]);
 
   let content;
   if (!user?.id) {
@@ -51,7 +70,9 @@ const OTPVerification = () => {
           name="otp"
           autoFocus
         />
-        <ResendOTPButton email={user.email} />
+        <div className="d-flex justify-content-center">
+          <ResendOTPButton email={user.email} />
+        </div>
       </>
     );
   }

@@ -3,13 +3,13 @@ import useCountDownTimer from "../../customHooks/useCountDownTimer";
 import useSendEmailOTP from "../../customHooks/useSendEmailOTP";
 
 const ResendOTPButton = ({ email }) => {
-  const [loading, sendEmailOTP] = useSendEmailOTP({ email });
+  const [loading, sendEmailOTP] = useSendEmailOTP();
   const [remainingTime, resetTimer] = useCountDownTimer({
     duration: 10 * 1000,
   });
 
   const resendOTP = async () => {
-    const res = await sendEmailOTP();
+    const res = await sendEmailOTP({ email });
     if (res?.user) {
       resetTimer();
     } else {
