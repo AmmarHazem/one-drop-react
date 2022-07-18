@@ -1,23 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from "../axios";
+import { getWashTypes } from "../API/washTypeAPI";
 
 const useWashTypes = () => {
   const [loading, setLoading] = useState(true);
   const [washTypes, setWashTypes] = useState(null);
 
   useEffect(() => {
-    const getWashTypes = async () => {
-      try {
-        const res = await axios.get("/wash-types");
-        setWashTypes(res.data.washTypes);
-      } catch (e) {
-        console.log("--- get wash-types error");
-        console.log(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getWashTypes();
+    (async () => {
+      const res = await getWashTypes();
+      setLoading(false);
+      setWashTypes(res);
+    })();
   }, []);
 
   return [washTypes, loading];

@@ -1,29 +1,26 @@
 import { useState, useCallback } from "react";
-import axios from "../axios";
+import { submitSignupForm } from "../API/authAPI";
 
 const useSubmitSignupForm = () => {
   const [loading, setLoading] = useState(false);
 
-  const submitForm = useCallback(async ({ userID, name, phone, city }) => {
-    setLoading(true);
-    try {
-      const res = await axios.post("/auth/sign-up", {
+  const submitSignupFormCallback = useCallback(
+    async ({ userID, name, phone, city, neighborhood }) => {
+      setLoading(true);
+      const res = await submitSignupForm({
         userID,
         name,
         phone,
         city,
+        neighborhood,
       });
-      return res.data;
-    } catch (e) {
-      console.log("--- useSubmitSignupForm error");
-      console.log(e);
-      return null;
-    } finally {
       setLoading(false);
-    }
-  }, []);
+      return res;
+    },
+    []
+  );
 
-  return [loading, submitForm];
+  return [loading, submitSignupFormCallback];
 };
 
 export default useSubmitSignupForm;

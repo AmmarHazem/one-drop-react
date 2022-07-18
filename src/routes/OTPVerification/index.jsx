@@ -14,7 +14,7 @@ const OTPVerification = () => {
   const location = useLocation();
   const { user, next } = location.state || {};
   const [otp, setOTP] = useState("");
-  const [loading, otpSignin] = useOTPSignin({ otp, email: user.email });
+  const [loading, otpSignin] = useOTPSignin();
 
   const handleLoginSuccess = useCallback(
     (res) => {
@@ -33,7 +33,7 @@ const OTPVerification = () => {
   useEffect(() => {
     if (otp.length !== 4) return;
     const submitOTP = async () => {
-      const res = await otpSignin();
+      const res = await otpSignin({ otp, email: user.email });
       if (!res?.user?.id) {
         message.error("Invalid or expired OTP code");
       } else if (res.user.didRegister) {

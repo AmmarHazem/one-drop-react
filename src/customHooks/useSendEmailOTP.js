@@ -1,24 +1,17 @@
 import { useState, useCallback } from "react";
-import axios from "../axios";
+import { sendEmailOTP } from "../API/authAPI";
 
 const useSendEmailOTP = () => {
   const [loading, setLoading] = useState(false);
 
-  const sendEmailOTP = useCallback(async ({ email }) => {
+  const sendEmailOTPCallback = useCallback(async ({ email }) => {
     setLoading(true);
-    try {
-      const res = await axios.post("/auth/send-email-otp", { email });
-      return res.data;
-    } catch (e) {
-      console.log("--- useSendEmailOTP error");
-      console.log(e);
-      return null;
-    } finally {
-      setLoading(false);
-    }
+    const res = await sendEmailOTP({ email });
+    setLoading(false);
+    return res;
   }, []);
 
-  return [loading, sendEmailOTP];
+  return [loading, sendEmailOTPCallback];
 };
 
 export default useSendEmailOTP;

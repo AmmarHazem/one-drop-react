@@ -1,24 +1,17 @@
 import { useState, useCallback } from "react";
-import axios from "../axios";
+import { otpSignin } from "../API/authAPI";
 
-const useOTPSignin = ({ email, otp }) => {
+const useOTPSignin = () => {
   const [loading, setLoading] = useState(false);
 
-  const otpSignin = useCallback(async () => {
+  const otpSigninCallback = useCallback(async ({ email, otp }) => {
     setLoading(true);
-    try {
-      const res = await axios.post("/auth/otp-sign-in", { email, otp });
-      return res.data;
-    } catch (e) {
-      console.log("--- useOTPSignin error");
-      console.log(e);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [email, otp]);
+    const res = await otpSignin({ email, otp });
+    setLoading(false);
+    return res;
+  }, []);
 
-  return [loading, otpSignin];
+  return [loading, otpSigninCallback];
 };
 
 export default useOTPSignin;

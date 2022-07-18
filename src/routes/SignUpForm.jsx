@@ -51,6 +51,7 @@ const SignUpForm = () => {
       userID: user.id,
       name: values.name,
       phone: values.phone,
+      neighborhood: values.neighborhood,
       city,
     });
     if (res?.user?.didRegister) {
