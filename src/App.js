@@ -10,6 +10,7 @@ import SignUpForm from "./routes/SignUpForm";
 import useCurrentUser from "./customHooks/useCurrentUser";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NoAuthOnlyRoute from "./components/NoAuthOnlyRoute";
 
 function App() {
   const loading = useCurrentUser();
@@ -35,8 +36,22 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="target" element={<TargetTab />} />
-          <Route path="my-account" element={<MyAccountTab />} />
+          <Route
+            path="target"
+            element={
+              <ProtectedRoute>
+                <TargetTab />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="my-account"
+            element={
+              <ProtectedRoute>
+                <MyAccountTab />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="*"
             element={
@@ -48,10 +63,28 @@ function App() {
         </Route>
         <Route
           path="/signup-send-email-verification"
-          element={<SignUpSendEmailVerification />}
+          element={
+            <NoAuthOnlyRoute>
+              <SignUpSendEmailVerification />
+            </NoAuthOnlyRoute>
+          }
         />
-        <Route path="/otp-verfication" element={<OTPVerification />} />
-        <Route path="/sign-up" element={<SignUpForm />} />
+        <Route
+          path="/otp-verfication"
+          element={
+            <NoAuthOnlyRoute>
+              <OTPVerification />
+            </NoAuthOnlyRoute>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <NoAuthOnlyRoute>
+              <SignUpForm />
+            </NoAuthOnlyRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

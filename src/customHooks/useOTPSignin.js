@@ -7,13 +7,7 @@ const useOTPSignin = ({ email, otp }) => {
   const otpSignin = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.post(
-        "/auth/otp-sign-in",
-        { email, otp }
-        // {
-        //   withCredentials: true,
-        // }
-      );
+      const res = await axios.post("/auth/otp-sign-in", { email, otp });
       return res.data;
     } catch (e) {
       console.log("--- useOTPSignin error");

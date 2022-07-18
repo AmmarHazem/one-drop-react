@@ -32,7 +32,7 @@ const HomeTab = () => {
   return (
     <div className="home-tab">
       <HomeTabHeader />
-      <main className="home-tab-content">{content}</main>
+      <main className="home-tab-content py-3">{content}</main>
     </div>
   );
 };

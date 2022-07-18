@@ -12,7 +12,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, next } = location.state;
+  const { user, next } = location.state || {};
   const [loadingFormSubmit, submitForm] = useSubmitSignupForm();
   const [loading, cities] = useCities();
   const [enableContinueButton, setEnableContinueButton] = useState(false);

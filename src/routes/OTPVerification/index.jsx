@@ -12,7 +12,7 @@ const OTPVerification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, next } = location.state;
+  const { user, next } = location.state || {};
   const [otp, setOTP] = useState("");
   const [loading, otpSignin] = useOTPSignin({ otp, email: user.email });
 
@@ -21,10 +21,8 @@ const OTPVerification = () => {
       dispatch(setUserAction(res.user));
       let nextPath;
       if (next?.pathname) {
-        debugger;
         nextPath = next?.pathname;
       } else {
-        debugger;
         nextPath = "/";
       }
       navigate(nextPath, { replace: true });
