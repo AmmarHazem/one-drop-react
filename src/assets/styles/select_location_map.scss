@@ -20,7 +20,7 @@
     }
 
     .location-search {
-      height: 10rem;
+      height: 12rem;
       padding-left: 1rem;
       padding-right: 1rem;
       padding-top: 1rem;
@@ -46,6 +46,28 @@
         .anticon-search {
           margin-right: 0.5rem;
         }
+      }
+
+      .user-address-item {
+        .leading-icon {
+          background-color: rgba($color: $primary-color, $alpha: 0.2);
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 1rem;
+
+          .anticon-environment {
+            margin: 0px;
+            color: $primary-color;
+          }
+        }
+      }
+
+      .confirm-address-btn {
+        width: 18rem;
       }
     }
   }

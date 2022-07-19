@@ -115,3 +115,49 @@ code {
     }
   }
 }
+
+.user-address-item {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+
+  .leading-icon {
+    cursor: pointer;
+
+    .anticon-environment {
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .details {
+    flex-basis: 100%;
+    cursor: pointer;
+
+    .name {
+      font-weight: bold;
+    }
+  }
+
+  .save-btn {
+    margin-left: auto;
+
+    span {
+      color: #ccc;
+    }
+
+    &.saved {
+      span {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.ant-spin-container {
+  height: 100%;
+
+  & > div {
+    height: 100%;
+  }
+}

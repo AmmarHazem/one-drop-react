@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { EnvironmentOutlined, BookOutlined } from "@ant-design/icons";
 
-const UserAddressItem = ({ address, onClick }) => {
+const UserAddressItem = ({ address, onClick, isSaved = true }) => {
   return (
     <div className="user-address-item">
       <div className="leading-icon" onClick={onClick}>
@@ -15,7 +15,7 @@ const UserAddressItem = ({ address, onClick }) => {
         onClick={() => {
           console.log("--- unsave");
         }}
-        className="save-btn"
+        className={`save-btn ${isSaved ? "saved" : ""}`}
         type="text"
       >
         <BookOutlined />

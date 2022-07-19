@@ -7,7 +7,7 @@ const configSlice = createSlice({
   },
   reducers: {
     setConfig: (state, { payload }) => {
-      state.googleAPIKey = payload.googleAPIKey;
+      state.googleAPIKey = payload?.googleAPIKey;
     },
   },
 });

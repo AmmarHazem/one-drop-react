@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NoAuthOnlyRoute from "./components/NoAuthOnlyRoute";
 import SelectLocationMap from "./routes/SelectLocationMap";
 import SelectLocation from "./routes/SelectLocation";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const loading = useCurrentUser();
@@ -29,72 +30,74 @@ function App() {
     <div className="app">
       <div className="app-container">
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}>
-              <Route index element={<HomeTab />} />
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<Home />}>
+                <Route index element={<HomeTab />} />
+                <Route
+                  path="my-orders"
+                  element={
+                    <ProtectedRoute>
+                      <MyOrdersTab />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="target"
+                  element={
+                    <ProtectedRoute>
+                      <TargetTab />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="my-account"
+                  element={
+                    <ProtectedRoute>
+                      <MyAccountTab />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <main>
+                      <h2>Route not found</h2>
+                    </main>
+                  }
+                />
+              </Route>
               <Route
-                path="my-orders"
+                path="/signup-send-email-verification"
                 element={
-                  <ProtectedRoute>
-                    <MyOrdersTab />
-                  </ProtectedRoute>
+                  <NoAuthOnlyRoute>
+                    <SignUpSendEmailVerification />
+                  </NoAuthOnlyRoute>
                 }
               />
               <Route
-                path="target"
+                path="/otp-verfication"
                 element={
-                  <ProtectedRoute>
-                    <TargetTab />
-                  </ProtectedRoute>
+                  <NoAuthOnlyRoute>
+                    <OTPVerification />
+                  </NoAuthOnlyRoute>
                 }
               />
               <Route
-                path="my-account"
+                path="/sign-up"
                 element={
-                  <ProtectedRoute>
-                    <MyAccountTab />
-                  </ProtectedRoute>
+                  <NoAuthOnlyRoute>
+                    <SignUpForm />
+                  </NoAuthOnlyRoute>
                 }
               />
               <Route
-                path="*"
-                element={
-                  <main>
-                    <h2>Route not found</h2>
-                  </main>
-                }
+                path="/select-location-map"
+                element={<SelectLocationMap />}
               />
-            </Route>
-            <Route
-              path="/signup-send-email-verification"
-              element={
-                <NoAuthOnlyRoute>
-                  <SignUpSendEmailVerification />
-                </NoAuthOnlyRoute>
-              }
-            />
-            <Route
-              path="/otp-verfication"
-              element={
-                <NoAuthOnlyRoute>
-                  <OTPVerification />
-                </NoAuthOnlyRoute>
-              }
-            />
-            <Route
-              path="/sign-up"
-              element={
-                <NoAuthOnlyRoute>
-                  <SignUpForm />
-                </NoAuthOnlyRoute>
-              }
-            />
-            <Route
-              path="/select-location-map"
-              element={<SelectLocationMap />}
-            />
-            <Route path="/select-location" element={<SelectLocation />} />
-          </Routes>
+              <Route path="/select-location" element={<SelectLocation />} />
+            </Routes>
+          </ErrorBoundary>
         </BrowserRouter>
       </div>
     </div>

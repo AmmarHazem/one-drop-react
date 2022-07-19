@@ -2,13 +2,17 @@ import { Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import HomeTabWashTypeCard from "./HomeTabWashTypeCard";
-import { setWashTypeAction } from "../../redux/createOrderReducer";
+import {
+  setWashTypeAction,
+  resetAllAction,
+} from "../../redux/createOrderReducer";
 
 const HomeTabNewWashSection = ({ washTypes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onWashTypeClicked = (washType) => {
+    dispatch(resetAllAction());
     dispatch(setWashTypeAction(washType));
     navigate("/select-location-map");
   };

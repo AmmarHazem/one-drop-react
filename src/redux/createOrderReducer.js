@@ -13,10 +13,17 @@ const createOrderSlice = createSlice({
     setWashType: (state, { payload }) => {
       state.washType = payload;
     },
+    resetAll: (state) => {
+      state.washType = null;
+      state.address = null;
+    },
   },
 });
 
-export const { setWashType: setWashTypeAction, setAddress: setAddressAction } =
-  createOrderSlice.actions;
+export const {
+  setWashType: setWashTypeAction,
+  setAddress: setAddressAction,
+  resetAll: resetAllAction,
+} = createOrderSlice.actions;
 
 export default createOrderSlice.reducer;
