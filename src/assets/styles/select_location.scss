@@ -1,0 +1,65 @@
+@import "./variables.scss";
+
+.select-location {
+  .search-input {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+
+    .ant-input-affix-wrapper {
+      background-color: rgb(245, 245, 245);
+      border: none;
+      border-radius: 10px;
+
+      .ant-input-prefix {
+        color: #bbb;
+      }
+
+      .ant-input {
+        background-color: rgb(245, 245, 245);
+        border: none;
+      }
+    }
+  }
+
+  .saved-locations-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    background-color: rgb(245, 245, 245);
+  }
+
+  .user-address-item {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+
+    .leading-icon {
+      cursor: pointer;
+
+      .anticon-environment {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .details {
+      flex-basis: 100%;
+      cursor: pointer;
+
+      .name {
+        font-weight: bold;
+      }
+    }
+
+    .save-btn {
+      margin-left: auto;
+    }
+  }
+
+  .no-address-found {
+    text-align: center;
+  }
+}

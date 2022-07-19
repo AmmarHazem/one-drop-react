@@ -1,13 +1,15 @@
-import React from "react";
+import trimText from "../../helpers/trimText";
 
-const HomeTabWashTypeCard = ({ name, description, image }) => {
+const HomeTabWashTypeCard = ({ name, description, image, onClick }) => {
   return (
-    <div className="wash-type-card">
+    <div onClick={onClick} className="wash-type-card">
       <div className="image">
         <img src={image} alt={name} />
       </div>
       <div className="name">{name}</div>
-      <div className="description">{description}</div>
+      <div className="description">
+        {trimText({ text: description, length: 80 })}
+      </div>
     </div>
   );
 };

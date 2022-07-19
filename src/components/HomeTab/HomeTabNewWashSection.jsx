@@ -1,7 +1,18 @@
 import { Row, Col } from "antd";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import HomeTabWashTypeCard from "./HomeTabWashTypeCard";
+import { setWashTypeAction } from "../../redux/createOrderReducer";
 
 const HomeTabNewWashSection = ({ washTypes }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onWashTypeClicked = (washType) => {
+    dispatch(setWashTypeAction(washType));
+    navigate("/select-location-map");
+  };
+
   return (
     <section className="new-wash-section">
       <Row>
@@ -13,6 +24,7 @@ const HomeTabNewWashSection = ({ washTypes }) => {
             {washTypes.map((item) => {
               return (
                 <HomeTabWashTypeCard
+                  onClick={() => onWashTypeClicked(item)}
                   key={item._id}
                   name={item.name}
                   description={item.description}

@@ -5,6 +5,8 @@
 @import "./signup_send_email_verification.scss";
 @import "./otp_verification.scss";
 @import "./sign_up_form.scss";
+@import "./select_location_map.scss";
+@import "./select_location.scss";
 
 body {
   margin: 0;
@@ -16,6 +18,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  background-color: #eee;
+  height: 100vh;
+
+  .app-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+  }
 }
 
 .ant-btn {
@@ -71,4 +86,32 @@ code {
 .ant-btn-primary {
   background-color: $secondary-color;
   border-color: $secondary-color;
+}
+
+.od-header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+
+  .back-btn {
+    position: relative;
+    z-index: 1;
+  }
+
+  .title-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      margin: 0px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  }
 }

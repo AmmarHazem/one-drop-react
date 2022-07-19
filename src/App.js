@@ -11,6 +11,8 @@ import useCurrentUser from "./customHooks/useCurrentUser";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NoAuthOnlyRoute from "./components/NoAuthOnlyRoute";
+import SelectLocationMap from "./routes/SelectLocationMap";
+import SelectLocation from "./routes/SelectLocation";
 
 function App() {
   const loading = useCurrentUser();
@@ -24,69 +26,78 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route index element={<HomeTab />} />
-          <Route
-            path="my-orders"
-            element={
-              <ProtectedRoute>
-                <MyOrdersTab />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="target"
-            element={
-              <ProtectedRoute>
-                <TargetTab />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="my-account"
-            element={
-              <ProtectedRoute>
-                <MyAccountTab />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <main>
-                <h2>Route not found</h2>
-              </main>
-            }
-          />
-        </Route>
-        <Route
-          path="/signup-send-email-verification"
-          element={
-            <NoAuthOnlyRoute>
-              <SignUpSendEmailVerification />
-            </NoAuthOnlyRoute>
-          }
-        />
-        <Route
-          path="/otp-verfication"
-          element={
-            <NoAuthOnlyRoute>
-              <OTPVerification />
-            </NoAuthOnlyRoute>
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <NoAuthOnlyRoute>
-              <SignUpForm />
-            </NoAuthOnlyRoute>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <div className="app-container">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />}>
+              <Route index element={<HomeTab />} />
+              <Route
+                path="my-orders"
+                element={
+                  <ProtectedRoute>
+                    <MyOrdersTab />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="target"
+                element={
+                  <ProtectedRoute>
+                    <TargetTab />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="my-account"
+                element={
+                  <ProtectedRoute>
+                    <MyAccountTab />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <main>
+                    <h2>Route not found</h2>
+                  </main>
+                }
+              />
+            </Route>
+            <Route
+              path="/signup-send-email-verification"
+              element={
+                <NoAuthOnlyRoute>
+                  <SignUpSendEmailVerification />
+                </NoAuthOnlyRoute>
+              }
+            />
+            <Route
+              path="/otp-verfication"
+              element={
+                <NoAuthOnlyRoute>
+                  <OTPVerification />
+                </NoAuthOnlyRoute>
+              }
+            />
+            <Route
+              path="/sign-up"
+              element={
+                <NoAuthOnlyRoute>
+                  <SignUpForm />
+                </NoAuthOnlyRoute>
+              }
+            />
+            <Route
+              path="/select-location-map"
+              element={<SelectLocationMap />}
+            />
+            <Route path="/select-location" element={<SelectLocation />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </div>
   );
 }
 

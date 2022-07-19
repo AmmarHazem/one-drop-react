@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUserAction } from "../redux/authReducer";
-import { getCurrentUser } from "../API/userAPI";
+import { setConfigAction } from "../redux/configReducer";
+import { getCurrentUser, getEnvVariables } from "../API/userAPI";
 
 const useCurrentUser = () => {
   const dispatch = useDispatch();
@@ -9,8 +10,12 @@ const useCurrentUser = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await getCurrentUser();
-      dispatch(setUserAction(res));
+      const promisesResult = await Promise.all([
+        getCurrentUser(),
+        getEnvVariables(),
+      ]);
+      dispatch(setUserAction(promisesResult[0]));
+      dispatch(setConfigAction(promisesResult[1]));
       setLoading(false);
     })();
   }, [dispatch]);

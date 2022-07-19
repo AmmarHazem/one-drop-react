@@ -16,9 +16,13 @@ const HomeTab = () => {
       </div>
     );
   } else if (!washTypes) {
-    content = <h3>Something went wrong</h3>;
+    content = (
+      <h3 className="d-flex justify-content-center">Something went wrong</h3>
+    );
   } else if (washTypes.length === 0) {
-    content = <h3>No wash types found</h3>;
+    content = (
+      <h3 className="d-flex justify-content-center">No wash types found</h3>
+    );
   } else {
     content = (
       <>
